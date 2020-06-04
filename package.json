@@ -1,0 +1,16 @@
+{
+  "name": "vue3-edge-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "transpile-vue": "buble node_modules/vue/dist/vue.global.js --target edge:18 --objectAssign --o src/vue.transpiled.js",
+    "dev": "npx servor src"
+  },
+  "devDependencies": {
+    "buble": "^0.20.0"
+  },
+  "dependencies": {
+    "vue": "^3.0.0-beta.14"
+  }
+}

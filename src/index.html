@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+    <script src="/vue.transpiled.js"></script>
+  </head>
+  <body>
+    <script type="text/x-template" id="item-template">
+        <h1>Item component: {{ computedItem }}</h1>
+    </script>
+    <div id="app">
+      Items: {{ collection }}
+      <item-component v-for="item in collection" :key="item.id" :item="item"></item-component>
+    </div>
+    <script>
+    const ItemComponent = {
+      template: '#item-template',
+      props: {
+        item: Object
+      },
+      setup (props) {
+        const computedItem = Vue.computed(() => {
+          console.log('item', props.item);
+          return props.item
+        })
+        return {
+          computedItem
+        }
+      }
+    }
+    Vue.createApp({
+      components: {
+        ItemComponent
+      },
+      setup() {
+        const collection = Vue.ref([]);
+        setTimeout(() => { collection.value = [{ id: 0 }] }, 1000)
+        Vue.watchEffect(() => {
+          console.log('collection', collection.value)
+        })
+        return {
+          collection
+        }
+      }
+    }).mount('#app')
+    </script>
+  </body>
+</html>
