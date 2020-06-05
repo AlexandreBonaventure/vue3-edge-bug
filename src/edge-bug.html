@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug</title>
+  </head>
+  <body>
+    <script>
+      function normalizePropsOptions(raw) {
+        if (!raw) return []
+        const normalizedEntry = ['hello'];
+        return normalizedEntry;
+      }
+      const { 0: test } = normalizePropsOptions()
+      console.log(test)
+      const { 0: test2 } = normalizePropsOptions([])
+      console.log(test2)
+    </script>
+  </body>
+</html>
